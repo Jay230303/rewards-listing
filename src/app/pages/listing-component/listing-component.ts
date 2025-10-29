@@ -133,15 +133,7 @@ export class ListingComponent implements OnInit {
     this.sortPanelOpen = false;
   }
 
-  sortBy(order: 'asc' | 'desc'): void {
-    this.filtered.sort((a, b) =>
-      order === 'asc'
-        ? a.name.localeCompare(b.name)
-        : b.name.localeCompare(a.name)
-    );
-    this.updatePagination();
-    this.closeSortPanel();
-  }
+  
 
 
   selectedSort: 'asc' | 'desc' | null = null;
@@ -164,10 +156,9 @@ applySort(): void {
   } else if (this.selectedSort === 'desc') {
     this.filtered.sort((a, b) => b.name.localeCompare(a.name));
   }
-
   this.currentPage = 1;
-  this.updatePagination();
-  this.toggleSortPanel(); // close sidebar
+  this.closeSortPanel();
+  this.updatePagination(); // close sidebar
 }
 
 scrollToTop(): void {
