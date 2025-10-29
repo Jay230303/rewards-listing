@@ -74,7 +74,7 @@
       </div>
 
       <!-- Grid -->
-      <div class="rewards-grid">
+      <div class="rewards-grid" *ngIf="paginated.length > 0; else noResults">
         <app-reward-card *ngFor="let r of paginated" [reward]="r"></app-reward-card>
       </div>
 
@@ -96,7 +96,14 @@
             <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
                 Next ›
             </button>
-            </div>
+      </div>
+
+      <ng-template #noResults>
+        <div class="no-results">
+            <img src="assets/images/no-results.png" alt="No rewards found" />
+            <p>No rewards found. Try adjusting your filters or search.</p>
+        </div>
+      </ng-template>
     </section>
   </div>
 

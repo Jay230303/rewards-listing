@@ -27,4 +27,16 @@ export class RewardCard {
       this.reward.quantity > 0
     );
   }
+
+  onImageError(event: Event) {
+    const imgElement = event.target as HTMLImageElement;
+    imgElement.src = 'assets/images/placeholder.svg';
+  }
+
+  isExpired(date: string): boolean {
+    const today = new Date();
+    const validUntil = new Date(date);
+    // Compare only date parts (ignore time)
+    return validUntil < today;
+  }
 }

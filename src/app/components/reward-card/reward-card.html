@@ -1,14 +1,30 @@
-<div class="card">
+<div class="card" >
   <div class="img-wrap">
-    <img [src]="imageUrl" alt="{{ reward.name }}" />
+    <img
+      [src]="reward.display_img_url || 'assets/images/placeholder.svg'"
+      (error)="onImageError($event)"
+      alt="{{ reward.name }}"
+    />
+
+    <!-- 🔹 Badges -->
     <div *ngIf="isOutOfStock" class="badge out">Out of Stock</div>
-    <div *ngIf="isLowStock" class="badge low">
+    <div *ngIf="isLowStock && !isOutOfStock" class="badge low">
       ON High Demand ({{ reward.quantity }} left)
     </div>
   </div>
+
   <div class="meta">
-    <h4>{{ reward.name }}</h4>
+    <h4 class="name">{{ reward.name }}</h4>
     <p class="points">{{ reward.points }} pts</p>
-    <small>Valid until: {{ reward.valid_until | date }}</small>
+
+    <div class="divider"></div>
+
+    <p *ngIf="!isExpired(reward.valid_until)" class="valid">
+      Valid until: {{ reward.valid_until | date: 'MMM d, y' }}
+    </p>
+
+    <p *ngIf="isExpired(reward.valid_until)" class="expired">
+      Expired
+    </p>
   </div>
 </div>

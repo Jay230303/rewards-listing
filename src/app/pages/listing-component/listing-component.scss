@@ -166,6 +166,8 @@ li.active {
   gap: 20px;
 }
 
+
+/* ---------- Pagination ---------- */
 .pagination-container {
   display: flex;
   justify-content: center;
@@ -204,4 +206,28 @@ li.active {
 
 .listing-container {
   padding-bottom: 100px; /* space for footer */
+}
+
+
+/* ---------- No Result Found ---------- */
+.no-results {
+  text-align: center;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+.no-results img {
+  width: 200px;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.no-results p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #444;
 }

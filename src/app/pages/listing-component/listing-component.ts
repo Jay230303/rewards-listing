@@ -17,7 +17,7 @@ export class ListingComponent implements OnInit {
 
   query = '';
   sortPanelOpen = false;
-  categories = ['e-Voucher', 'Products', 'Evergreen', 'Fashion & Retail'];
+  categories = ['e-Voucher', 'Products', 'Evergreen', 'Fashion & Retail','Food'];
   selectedCategories: string[] = [];
   appliedFilters: string[] = [];
   openCategory: string | null = null;
