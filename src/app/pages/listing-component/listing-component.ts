@@ -92,12 +92,15 @@ export class ListingComponent implements OnInit {
     if (page < 1 || page > this.totalPages) return;
     this.currentPage = page;
     this.updatePagination();
+    this.scrollToTop();
+    
   }
 
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.updatePagination();
+      this.scrollToTop();
     }
   }
 
@@ -105,6 +108,7 @@ export class ListingComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.updatePagination();
+      this.scrollToTop();
     }
   }
 
@@ -164,6 +168,10 @@ applySort(): void {
   this.currentPage = 1;
   this.updatePagination();
   this.toggleSortPanel(); // close sidebar
+}
+
+scrollToTop(): void {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 }
