@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration production --base-href https://Jay230303.github.io/rewards-listing/ && copy dist//rewards-listing//index.html dist//rewards-listing//404.html && npx angular-cli-ghpages --dir=dist/rewards-listing"
   },
   "private": true,
   "dependencies": {
