@@ -1,0 +1,51 @@
+.app-header {
+  background-color: #d71920; /* red like PDF */
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Left logo */
+.header-left .logo {
+  height: 38px;
+  object-fit: contain;
+}
+
+/* Right icons */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.icon-btn img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1); /* make icons white on red */
+}
+
+/* For the profile icon, use circular border if needed */
+.icon-btn.profile img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
