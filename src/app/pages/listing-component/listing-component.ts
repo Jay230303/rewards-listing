@@ -123,9 +123,7 @@ export class ListingComponent implements OnInit {
     this.updatePagination();
   }
 
-  toggleSortPanel(): void {
-    this.sortPanelOpen = !this.sortPanelOpen;
-  }
+  
 
   closeSortPanel(): void {
     this.sortPanelOpen = false;
@@ -140,4 +138,32 @@ export class ListingComponent implements OnInit {
     this.updatePagination();
     this.closeSortPanel();
   }
+
+
+  selectedSort: 'asc' | 'desc' | null = null;
+
+/** 🔹 Open/close sidebar */
+toggleSortPanel(): void {
+  this.sortPanelOpen = true;
+}
+
+/** 🔹 Reset sort selection */
+resetSort(): void {
+  this.selectedSort = null;
+  this.sortPanelOpen = false;
+}
+
+/** 🔹 Apply selected sort order */
+applySort(): void {
+  if (this.selectedSort === 'asc') {
+    this.filtered.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (this.selectedSort === 'desc') {
+    this.filtered.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
+  this.currentPage = 1;
+  this.updatePagination();
+  this.toggleSortPanel(); // close sidebar
+}
+
 }

@@ -231,3 +231,148 @@ li.active {
   font-weight: 500;
   color: #444;
 }
+
+
+.sort-btn {
+  background: #d14124;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background: #a9331c;
+  }
+}
+
+/* SIDEBAR STYLES */
+/* 🔹 SORT SIDEBAR */
+/* BODY class to lock scroll when drawer is open */
+body.no-scroll {
+  overflow: hidden !important;
+  position: relative;
+  height: 100%;
+  touch-action: none;
+}
+
+/* BACKDROP (blur + dim) */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2000;
+}
+
+/* SORT SIDEBAR (drawer) */
+.sort-sidebar {
+  position: fixed;
+  top: 0;
+  right: -360px;           /* hidden offscreen */
+  width: 340px;
+  max-width: 90%;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  transition: right 0.36s cubic-bezier(.25,.8,.25,1), opacity 0.2s;
+  padding: 24px;
+  z-index: 2100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+/* visible state */
+.sort-sidebar.open {
+  right: 0;
+}
+
+/* header inside drawer */
+.sort-sidebar .sort-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #f1f1f1;
+  padding-bottom: 10px;
+}
+
+.sort-sidebar .sort-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.sort-sidebar .reset {
+  background: none;
+  border: none;
+  color: #d14124;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* options */
+.sort-options label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.sort-buttons button {
+  flex: 1;
+  padding: 10px 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+
+.sort-buttons button:hover {
+  border-color: #d14124;
+  color: #d14124;
+}
+
+.sort-buttons button.active {
+  background: #d14124;
+  color: #fff;
+  border-color: #d14124;
+}
+
+/* apply */
+.apply-section {
+  border-top: 1px solid #f2f2f2;
+  padding-top: 16px;
+}
+
+.apply-btn {
+  width: 100%;
+  padding: 12px 10px;
+  border-radius: 8px;
+  background: #d14124;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .sort-sidebar {
+    width: 92%;
+    right: -100%;
+  }
+  .sort-sidebar.open {
+    right: calc(100% - 92%);
+  }
+}
