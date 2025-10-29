@@ -1,0 +1,104 @@
+<div class="listing-container">
+
+  <!-- Search + Results Header -->
+  <div class="search-section">
+    <h2 class="page-title">Search</h2>
+
+    <div class="search-bar">
+      <input [(ngModel)]="query" (input)="search()" placeholder="Search rewards..." />
+    </div>
+
+    <div class="applied-filters">
+      <span>Applied Filters:</span>
+      <div class="filter-chip" *ngFor="let filter of appliedFilters">
+        {{ filter }}
+        <button class="clear-btn" (click)="removeFilter(filter)">×</button>
+      </div>
+      <button class="clear-all" *ngIf="appliedFilters.length" (click)="clearAll()">Clear Filters</button>
+    </div>
+
+  </div>
+
+  <div class="content-grid">
+    <!-- LEFT SIDEBAR: Categories -->
+    <aside class="filter-panel">
+      <!-- Category dropdown -->
+      <div class="filter-box">
+        <div class="filter-header" (click)="toggleCategoryGroup('Categories')">
+          <span>Categories</span>
+          <span class="arrow">{{ openCategory === 'Categories' ? '▾' : '▸' }}</span>
+        </div>
+
+        <div class="filter-content" *ngIf="openCategory === 'Categories'">
+          <ul>
+            <li *ngFor="let cat of categories"
+                (click)="toggleCategory(cat)"
+                [class.active]="selectedCategories.includes(cat)">
+              <span class="circle" [class.selected]="selectedCategories.includes(cat)"></span>
+              {{ cat }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Filter by points -->
+      <div class="filter-box">
+        <div class="filter-header" (click)="toggleCategoryGroup('Points')">
+          <span>Filter By</span>
+          <span class="arrow">{{ openCategory === 'Points' ? '▾' : '▸' }}</span>
+        </div>
+
+        <div class="filter-content" *ngIf="openCategory === 'Points'">
+          <ul>
+            <li (click)="toggleFilter('Below 1000 pts')" [class.active]="appliedFilters.includes('Below 1000 pts')">
+              <span class="circle" [class.selected]="appliedFilters.includes('Below 1000 pts')"></span>
+              Below 1000 pts
+            </li>
+            <li (click)="toggleFilter('Above 1000 pts')" [class.active]="appliedFilters.includes('Above 1000 pts')">
+              <span class="circle" [class.selected]="appliedFilters.includes('Above 1000 pts')"></span>
+              Above 1000 pts
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT PANEL: Rewards -->
+    <section class="rewards-section">
+      <!-- Header -->
+      <div class="results-header">
+        <div class="results-text">
+          {{ filtered.length }} results found
+        </div>
+        <button class="sort-btn" (click)="toggleSortPanel()">Sort</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="rewards-grid">
+        <app-reward-card *ngFor="let r of paginated" [reward]="r"></app-reward-card>
+      </div>
+
+      <div class="pagination-container" *ngIf="totalPages > 1">
+            <button class="page-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+                ‹ Prev
+            </button>
+
+            <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+                <button
+                class="page-btn"
+                [class.active]="currentPage === i + 1"
+                (click)="goToPage(i + 1)"
+                >
+                {{ i + 1 }}
+                </button>
+            </ng-container>
+
+            <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+                Next ›
+            </button>
+            </div>
+    </section>
+  </div>
+
+  
+</div>

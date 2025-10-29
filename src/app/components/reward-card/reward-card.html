@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="img-wrap">
+    <img [src]="imageUrl" alt="{{ reward.name }}" />
+    <div *ngIf="isOutOfStock" class="badge out">Out of Stock</div>
+    <div *ngIf="isLowStock" class="badge low">
+      ON High Demand ({{ reward.quantity }} left)
+    </div>
+  </div>
+  <div class="meta">
+    <h4>{{ reward.name }}</h4>
+    <p class="points">{{ reward.points }} pts</p>
+    <small>Valid until: {{ reward.valid_until | date }}</small>
+  </div>
+</div>
